@@ -1,2 +1,2 @@
 # phpunit
-Testes em PHP
+Testes em PHP utilizando TDD.
