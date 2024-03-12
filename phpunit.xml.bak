@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         bootstrap="vendor/autoload.php"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.0/phpunit.xsd"
+         colors="true"
+         cacheDirectory=".phpunit.cache">
+   <php>
+       <ini name="xdebug.mode" value="debug,coverage" />
+       <ini name="xdebug.coverage_dir" value="coverage" />  
+   </php>
+   <testsuites>
+       <testsuite name="tests">
+           <directory>./tests</directory>
+       </testsuite>
+   </testsuites>
+   <coverage>
+       <include>
+           <directory>./app</directory>
+       </include>
+   </coverage>
+</phpunit>
