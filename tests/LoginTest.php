@@ -1,6 +1,7 @@
 <?php
 
 use App\Login;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class LoginTest extends TestCase {
@@ -13,20 +14,28 @@ class LoginTest extends TestCase {
     
     public function testShouldLogInWithCredentials() {
         $email = 'email@gmail.com';
-        $senha = '123456789';
+        $password = '123456789';
         
-        $this->assertTrue($this->login->logar($email, $senha));
+        $this->assertTrue($this->login->logar($email, $password));
     }
 
-    public function testShouldFailWithInvalidCredentials() {
-        $email = 'email@gmail.com';
-        $senha = '1234567890';
+    #[DataProvider("accessAttemptProvider")]
+    public function testShouldFailWithInvalidCredentials(string $email, string $password) {
 
-        
         $this->expectException(Exception::class);
         $this->expectExceptionMessage("Error logging in!");
         
-        $this->login->logar($email, $senha);
+        $this->login->logar($email, $password);
+
+    }
+
+    public static function accessAttemptProvider(): array {
+        return [
+            'fields empty'         => ['',''],
+            'field email empty'    => ['','123456789'],
+            'field password empty' => ['email@gmail.com',''],
+            'fields invalid'       => ['torpedo@gmail.com','124578'],
+        ];
     }
 
 }

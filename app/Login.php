@@ -7,8 +7,8 @@ use Exception;
 class Login 
 {
 
-    public function logar(string $email, string $senha): bool {
-        if ($email === 'email@gmail.com' && $senha === '123456789') {
+    public function logar(string $email, string $password): bool {
+        if ($email === 'email@gmail.com' && $password === '123456789') {
             return true;
         }
 
